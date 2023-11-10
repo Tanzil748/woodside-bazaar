@@ -1,0 +1,35 @@
+/* home page layout */
+#home-page {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "side-filter prod-banner prod-banner prod-banner"
+    "side-filter prod-grid prod-grid prod-grid";
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+#side-filter {
+  grid-area: side-filter;
+}
+
+#prod-banner {
+  grid-area: prod-banner;
+}
+
+#prod-grid {
+  grid-area: prod-grid;
+}
+
+@media (max-width: 768px) {
+  #side-filter {
+    display: none;
+  }
+  #home-page {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "prod-banner prod-banner prod-banner"
+      "prod-grid prod-grid prod-grid";
+  }
+}

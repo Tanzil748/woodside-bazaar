@@ -1,0 +1,14 @@
+.colHeader {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.subText {
+  font-size: 12px;
+  color: lightgray;
+}
+
+.socialMediaLogo {
+  background-color: white;
+  border-radius: 4px;
+}
