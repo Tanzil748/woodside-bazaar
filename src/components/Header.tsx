@@ -8,8 +8,12 @@ import {
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
+  // user data is stored in session
+  const { data: session } = useSession();
+
   return (
     <>
       {/* nav banner */}
@@ -95,15 +99,17 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link href="/login">Login</Link>
-              </li>
-              <li>
-                <Link href="/register">Register</Link>
-              </li>
-              <li className="hidden">
-                <a>Logout</a>
-              </li>
+              {!session ? (
+                <>
+                  <li>
+                    <button onClick={() => signIn()}>Login</button>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <button onClick={() => signOut()}>Log Out</button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

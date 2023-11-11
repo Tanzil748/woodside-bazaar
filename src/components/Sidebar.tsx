@@ -12,7 +12,7 @@ const Sidebar = () => {
     "Food Bazaar",
   ];
 
-  let priceRange = ["$0 - $10", "$11 - $20", "$21 - $30", "$30 - No Limit"];
+  let priceRange = ["$0 - $10", "$11 - $20", "$21 - $30", "$31 - No Limit"];
 
   return (
     <div className="bg-[#207020] text-gray-100 p-3 rounded-md min-h-[80vh] flex flex-col sticky top-4">

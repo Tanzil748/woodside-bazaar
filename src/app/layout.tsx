@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
   title: "Woodside Bazaar",
@@ -20,8 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <Layout>
+          <Header />
+          {children}
+        </Layout>
         <Footer />
       </body>
     </html>
