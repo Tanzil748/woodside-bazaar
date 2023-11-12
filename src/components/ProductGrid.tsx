@@ -2,8 +2,12 @@
 import React from "react";
 import Image from "next/image";
 import { seedData } from "@/constants/seedData";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductGrid = () => {
+  const dispatch = useDispatch();
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
       {seedData.map((product, i) => (
@@ -24,7 +28,13 @@ const ProductGrid = () => {
             <h2 className="card-title">{product.name}</h2>
             <div className="flex justify-between">
               <p className="text-green-600 text-lg">${product.price}</p>
-              <button className="bg-green-700 text-white py-2 px-4 rounded-md">
+              <button
+                className="bg-green-700 text-white py-2 px-4 rounded-md"
+                onClick={() => {
+                  dispatch(addToCart(product)),
+                    toast.success(`${product.name} added to cart`);
+                }}
+              >
                 ADD +
               </button>
             </div>
@@ -34,6 +44,7 @@ const ProductGrid = () => {
           </div>
         </div>
       ))}
+      <Toaster position="bottom-left" />
     </div>
   );
 };

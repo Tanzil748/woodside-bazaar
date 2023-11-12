@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   LocalPhone,
   AccountCircle,
@@ -9,10 +9,19 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useSelector } from "react-redux";
+import { StateProp } from "../../type";
 
 const Header = () => {
   // user data is stored in session
   const { data: session } = useSession();
+  const { productData } = useSelector((state: StateProp) => state.cart);
+  console.log(productData);
+
+  // handles productData changes & displays in UI
+  useEffect(() => {
+    console.log(productData);
+  }, [productData]);
 
   return (
     <>
@@ -84,7 +93,7 @@ const Header = () => {
                   />
                 </svg>
                 <span className="badge badge-sm indicator-item bg-red-500 text-white">
-                  8
+                  {productData ? productData?.length : 0}
                 </span>
               </Link>
             </label>
