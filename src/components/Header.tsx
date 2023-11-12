@@ -9,16 +9,32 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { StateProp } from "../../type";
+import { addUser, deleteUser } from "@/redux/cartSlice";
 
 const Header = () => {
   // user data is stored in session
   const { data: session } = useSession();
   const { productData } = useSelector((state: StateProp) => state.cart);
-  console.log(productData);
 
-  // handles productData changes & displays in UI
+  const dispatch = useDispatch();
+
+  // upon logging in/out, this hook sends the userInfo data to redux toolkit
+  useEffect(() => {
+    if (session) {
+      dispatch(
+        addUser({
+          name: session?.user?.name,
+          email: session?.user?.email,
+        })
+      );
+    } else {
+      dispatch(deleteUser());
+    }
+  }, [session, dispatch]);
+
+  // handles productData changes & displays in UI [for cart counter]
   useEffect(() => {
     console.log(productData);
   }, [productData]);

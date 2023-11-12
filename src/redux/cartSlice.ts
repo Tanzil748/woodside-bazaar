@@ -44,11 +44,25 @@ export const cartSlice = createSlice({
         );
       }
     },
-    resetCart: (state) => {
-      state.productData = [];
+    removeFromCart: (state, action) => {
+      state.productData = state.productData.filter(
+        (item) => item.name !== action.payload.name
+      );
+    },
+    addUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+    deleteUser: (state) => {
+      state.userInfo = null;
     },
   },
 });
 
-export const { addToCart, decreaseFromCart, resetCart } = cartSlice.actions;
+export const {
+  addToCart,
+  decreaseFromCart,
+  removeFromCart,
+  addUser,
+  deleteUser,
+} = cartSlice.actions;
 export default cartSlice.reducer;
