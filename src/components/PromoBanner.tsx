@@ -23,6 +23,7 @@ const PromoBanner = ({ gridRef }: { gridRef: RefObject<HTMLDivElement> }) => {
             width={600}
             height={100}
             className="rounded-md h-full brightness-75"
+            draggable="false"
           />
           {/* absolute text */}
           <div className="absolute top-14 left-10 text-white">
@@ -38,7 +39,7 @@ const PromoBanner = ({ gridRef }: { gridRef: RefObject<HTMLDivElement> }) => {
               </p>
               <Link href="#">
                 <button
-                  className="bg-red-700 px-2 py-1 rounded-sm"
+                  className="bg-red-700 hover:bg-red-800 duration-200 px-2 py-1 rounded-sm"
                   onClick={() => scrollToSection(gridRef)}
                 >
                   Shop Now
@@ -54,6 +55,7 @@ const PromoBanner = ({ gridRef }: { gridRef: RefObject<HTMLDivElement> }) => {
             width={500}
             height={100}
             className="rounded-md h-full brightness-75"
+            draggable="false"
           />
           {/* absolute text */}
           <div className="absolute top-14 left-10 text-white">

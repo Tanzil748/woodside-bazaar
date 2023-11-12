@@ -22,14 +22,15 @@ const ProductGrid = () => {
               width={300}
               height={200}
               className="object-cover w-full h-full"
+              draggable="false"
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{product.name}</h2>
+            <h2 className="card-title truncate">{product.name}</h2>
             <div className="flex justify-between">
               <p className="text-green-600 text-lg">${product.price}</p>
               <button
-                className="bg-green-700 text-white py-2 px-4 rounded-md"
+                className="bg-green-700 hover:bg-green-800 duration-200 text-white py-2 px-4 rounded-md"
                 onClick={() => {
                   dispatch(addToCart(product)),
                     toast.success(`${product.name} added to cart`);

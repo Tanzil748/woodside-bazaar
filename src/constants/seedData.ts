@@ -133,7 +133,7 @@ export const seedData = [
     store: "Walmart",
   },
   {
-    name: "Chocolate cake",
+    name: "Cake",
     img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1650&q=80",
     price: 11.99,
     category: "Sweet",
@@ -147,7 +147,7 @@ export const seedData = [
     store: "Trader Joe",
   },
   {
-    name: "Gingerbread brownies",
+    name: "Brownies",
     img: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80",
     price: 1.99,
     category: "Sweet",

@@ -1,0 +1,33 @@
+/* cart page layout */
+#cart-page {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "cart-menu cart-menu detail-side"
+    "cart-ad cart-ad detail-side";
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+#cart-menu {
+  grid-area: cart-menu;
+}
+
+#cart-ad {
+  grid-area: cart-ad;
+}
+
+#detail-side {
+  grid-area: detail-side;
+}
+
+@media (max-width: 768px) {
+  #cart-page {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "cart-menu cart-menu"
+      "cart-ad cart-ad"
+      "detail-side detail-side";
+  }
+}
