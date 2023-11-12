@@ -26,9 +26,8 @@ const Cart = () => {
 
   useEffect(() => {
     let totalAmount = 0;
-    productData.map((product: ProductType) => {
+    productData.forEach((product: ProductType) => {
       totalAmount += product.price * product.quantity;
-      return;
     });
     setTotal(totalAmount);
   }, [productData]);
@@ -53,8 +52,8 @@ const Cart = () => {
             </div>
             <div>
               {productData.map((product: ProductType, i) => (
-                <>
-                  <div key={i} className="flex items-center px-4">
+                <div key={i}>
+                  <div className="flex items-center px-4">
                     {/* left container */}
                     <div className="mr-auto flex justify-center sm:justify-start items-center w-full sm:w-1/2">
                       {/* picture */}
@@ -117,7 +116,7 @@ const Cart = () => {
                     </div>
                   </div>
                   <hr className="my-4" />
-                </>
+                </div>
               ))}
             </div>
           </div>

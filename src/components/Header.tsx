@@ -75,8 +75,8 @@ const Header = () => {
             />
           </div>
 
-          {/* order button */}
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
+          {/* order button -[FUTURE FEATURE] */}
+          {/* <label tabIndex={0} className="btn btn-ghost btn-circle">
             <Link
               href="/order"
               className="indicator tooltip"
@@ -84,7 +84,7 @@ const Header = () => {
             >
               <ReceiptLong />
             </Link>
-          </label>
+          </label> */}
 
           {/* Cart button */}
           <div className="dropdown dropdown-end">
