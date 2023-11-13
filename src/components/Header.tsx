@@ -16,8 +16,10 @@ import { addUser, deleteUser } from "@/redux/cartSlice";
 const Header = () => {
   // user data is stored in session
   const { data: session } = useSession();
-  const { productData } = useSelector((state: StateProp) => state.cart);
-
+  const { productData, orderData } = useSelector(
+    (state: StateProp) => state.cart
+  );
+  console.log(orderData);
   const dispatch = useDispatch();
 
   // upon logging in/out, this hook sends the userInfo data to redux toolkit
@@ -75,8 +77,8 @@ const Header = () => {
             />
           </div>
 
-          {/* order button -[FUTURE FEATURE] */}
-          {/* <label tabIndex={0} className="btn btn-ghost btn-circle">
+          {/* order button */}
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
             <Link
               href="/order"
               className="indicator tooltip"
@@ -84,7 +86,7 @@ const Header = () => {
             >
               <ReceiptLong />
             </Link>
-          </label> */}
+          </label>
 
           {/* Cart button */}
           <div className="dropdown dropdown-end">

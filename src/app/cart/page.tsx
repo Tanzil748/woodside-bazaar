@@ -1,10 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { addToCart, decreaseFromCart, removeFromCart } from "@/redux/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { ProductType, StateProp } from "../../../type";
 import "../../css/cart.css";
 import Image from "next/image";
+import Link from "next/link";
+import { ProductType, StateProp } from "../../../type";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  decreaseFromCart,
+  removeFromCart,
+  saveUserCart,
+  resetCart,
+} from "@/redux/cartSlice";
 import {
   Add,
   Remove,
@@ -14,7 +21,8 @@ import {
   Error,
 } from "@mui/icons-material";
 import toast, { Toaster } from "react-hot-toast";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { productData, userInfo } = useSelector(
@@ -32,16 +40,63 @@ const Cart = () => {
     setTotal(totalAmount);
   }, [productData]);
 
+  // stripe
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  );
+  const { data: session } = useSession();
+  const checkoutHandler = async () => {
+    const stripe = await stripePromise;
+    const response = await fetch("http://localhost:3000/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: productData,
+        email: session?.user?.email,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      await dispatch(saveUserCart({ order: productData, id: data.id }));
+      stripe?.redirectToCheckout({ sessionId: data.id });
+      dispatch(resetCart());
+    } else {
+      throw new Error("Failed to create stripe payment");
+    }
+  };
+
   return (
-    <div id="cart-page" className="max-w-[1400px] mx-auto min-h-[90vh] my-2.5">
+    <div id="cart-page" className="mx-auto min-h-[90vh] my-2.5 relative">
       {productData?.length === 0 ? (
-        <div className="h-[90vh] w-screen flex flex-col items-center justify-center">
-          <p className="text-2xl animate-bounce">Your cart is still empty.</p>
-          <Link href={"/"}>
-            <button className="text-xl bg-green-700 hover:bg-green-800 text-white py-1 px-2 rounded-md mt-2">
-              Shop Now
-            </button>
-          </Link>
+        // empty cart page
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="shadow-xl w-screen sm:w-[30rem] h-96 rounded-md flex flex-col justify-center items-center gap-y-4 text-center">
+            <Error className="text-red-800" style={{ fontSize: "3rem" }} />
+            <h1 className="font-extrabold text-xl">
+              Your cart is currently empty.
+            </h1>
+            <p className="text-sm">
+              Search though our trending categories for the best deals!
+            </p>
+            <p className="text-sm font-semibold">
+              If you have any questions feel free to contact us.
+            </p>
+            <p className="font-semibold mt-2">
+              <span className="text-green-700">Woodside</span> Bazaar
+            </p>
+
+            <hr />
+
+            <div className="flex items-end gap-2">
+              <Link href={"/"}>
+                <button className="text-base font-semibold bg-rose-800 hover:bg-rose-900 duration-200 text-white py-1 px-2 rounded-sm mt-2">
+                  Head back to shop
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       ) : (
         <>
@@ -186,7 +241,10 @@ const Cart = () => {
                 <div>${total.toFixed(2)}</div>
               </div>
               {userInfo ? (
-                <button className="bg-green-800 hover:bg-green-900 duration-200 text-white w-full py-1 rounded-sm mt-auto font-semibold mb-2">
+                <button
+                  className="bg-green-800 hover:bg-green-900 duration-200 text-white w-full py-1 rounded-sm mt-auto font-semibold mb-2"
+                  onClick={() => checkoutHandler()}
+                >
                   CHECKOUT
                 </button>
               ) : (
