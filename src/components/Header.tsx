@@ -6,7 +6,6 @@ import {
   Search,
   ReceiptLong,
 } from "@mui/icons-material";
-import Image from "next/image";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useSelector, useDispatch } from "react-redux";
@@ -54,14 +53,8 @@ const Header = () => {
       </div>
       <div className="navbar bg-base-100 2xl:container mx-auto">
         {/* logo */}
-        <Link href="/" className="flex gap-1 items-center mr-auto">
-          <Image
-            src="/logo.png"
-            alt="Woodside Bazaar Logo"
-            width={33}
-            height={30}
-          ></Image>
-          <div className="font-semibold text-xl">
+        <Link href="/" className="ml-2 sm:ml-4 mr-auto">
+          <div className="font-semibold text-md sm:text-xl">
             <span className="text-green-700">Woodside</span> Bazaar
           </div>
         </Link>
@@ -78,47 +71,44 @@ const Header = () => {
           </div>
 
           {/* order button */}
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <Link
-              href="/order"
-              className="indicator tooltip"
-              data-tip="My Orders"
-            >
+          <Link
+            href="/order"
+            className="indicator tooltip"
+            data-tip="My Orders"
+          >
+            <label tabIndex={0} className="btn btn-ghost btn-circle">
               <ReceiptLong />
-            </Link>
-          </label>
+            </label>
+          </Link>
 
           {/* Cart button */}
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
-              <Link
-                href="/cart"
-                className="indicator tooltip"
-                data-tip="My Cart"
+          <Link href="/cart" className="indicator tooltip" data-tip="My Cart">
+            <label tabIndex={0} className="btn btn-ghost btn-circle relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span className="badge badge-sm indicator-item bg-red-500 text-white">
-                  {productData ? productData?.length : 0}
-                </span>
-              </Link>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              <span className="absolute top-1 right-0 badge badge-sm bg-red-500 text-white">
+                {productData ? productData?.length : 0}
+              </span>
             </label>
-          </div>
+          </Link>
 
           {/* Account Dropdown */}
-          <div className="dropdown dropdown-end">
+          <div
+            className="dropdown dropdown-end indicator tooltip"
+            data-tip="Account"
+          >
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <AccountCircle />
             </label>
