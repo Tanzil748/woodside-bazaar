@@ -11,15 +11,19 @@ Woodside Bazaar is an online grocery store that allows users to shop the freshes
 Here's a walkthrough of how the app functions:
 
 - User loads into the home page & looks at the website promo banner. Then scroll to product section and add items to cart.
-  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarIntro.gif)
+  ![](https://github.com/Tanzil748/woodside-bazaar/blob/main/gifs/gif_1.gif)
   <br/>
 
 - User can toggle the quantity of their selected products in cart as well as remove them. All data is reflected in cart summary menu.
-  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarCart.gif)
+  ![](https://github.com/Tanzil748/woodside-bazaar/blob/main/gifs/gif_2.gif)
   <br/>
 
-- Login, Register & order page current design. Will be worked on in future updates.
-  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarCart.gif)
+- User can checkout after logging in. Cart automatically empties & redirected to success page.
+  ![](https://github.com/Tanzil748/woodside-bazaar/blob/main/gifs/gif_3.gif)
+  <br/>
+
+- All order information is stored in stripe dashboard.
+  ![](https://github.com/Tanzil748/woodside-bazaar/blob/main/gifs/gif_4.gif)
   <br/>
 
 ## Deployment
@@ -36,10 +40,10 @@ Then, to deploy this project run the following on client & server terminal:
   npm run dev
 ```
 
-#### Users
+#### Other pages...
 
-- All order information is stored in stripe dashboard.
-  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarUsermodel.gif)
+- Login, Register & order page current design. Will be worked on in future updates.
+  ![](https://github.com/Tanzil748/woodside-bazaar/blob/main/gifs/gif_5.gif)
   <br/>
 
 ## Future Features
