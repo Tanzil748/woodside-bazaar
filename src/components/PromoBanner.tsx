@@ -24,6 +24,7 @@ const PromoBanner = ({ gridRef }: { gridRef: RefObject<HTMLDivElement> }) => {
             height={100}
             className="rounded-md h-full brightness-75"
             draggable="false"
+            priority={true}
           />
           {/* absolute text */}
           <div className="absolute top-14 left-10 text-white">
@@ -56,6 +57,7 @@ const PromoBanner = ({ gridRef }: { gridRef: RefObject<HTMLDivElement> }) => {
             height={100}
             className="rounded-md h-full brightness-75"
             draggable="false"
+            priority={true}
           />
           {/* absolute text */}
           <div className="absolute top-14 left-10 text-white">

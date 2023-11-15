@@ -18,7 +18,7 @@ const Header = () => {
   const { productData, orderData } = useSelector(
     (state: StateProp) => state.cart
   );
-  console.log(orderData);
+  // console.log(orderData);
   const dispatch = useDispatch();
 
   // upon logging in/out, this hook sends the userInfo data to redux toolkit
@@ -60,15 +60,15 @@ const Header = () => {
         </Link>
 
         <div className="gap-x-3">
-          {/* search field */}
-          <div className="w-96 hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-sm px-4 py-1.5 focus-within:border-[#035803]">
+          {/* search field - FUTURE FEATURE */}
+          {/* <div className="w-96 hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-sm px-4 py-1.5 focus-within:border-[#035803]">
             <Search className="text-gray-500 duration-200" />
             <input
               type="text"
               placeholder="Search for products"
               className="placeholder:text-sm flex-1 outline-none"
             />
-          </div>
+          </div> */}
 
           {/* order button */}
           <Link

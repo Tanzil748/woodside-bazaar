@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Woodside Bazaar
 
-## Getting Started
+Woodside Bazaar is an online grocery store that allows users to shop the freshest of ingredients! This mock application is meant to serve as a template for local mom/pop stores, and further customizations can be made based on the client's request.
 
-First, run the development server:
+## Tech Stack
+
+`Next JS`, `Typescript`, `React`, `Tailwind/Daisy UI`, `Redux Toolkit`, `Stripe`
+
+## Demo
+
+Here's a walkthrough of how the app functions:
+
+- User loads into the home page & looks at the website promo banner. Then scroll to product section and add items to cart.
+  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarIntro.gif)
+  <br/>
+
+- User can toggle the quantity of their selected products in cart as well as remove them. All data is reflected in cart summary menu.
+  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarCart.gif)
+  <br/>
+
+- Login, Register & order page current design. Will be worked on in future updates.
+  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarCart.gif)
+  <br/>
+
+## Deployment
+
+Clone this repository and install npm packages.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, to deploy this project run the following on client & server terminal:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Users
 
-## Learn More
+- All order information is stored in stripe dashboard.
+  ![](https://github.com/Tanzil748/woodside_bazaar/blob/main/gifs/bazaarUsermodel.gif)
+  <br/>
 
-To learn more about Next.js, take a look at the following resources:
+## Future Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In future versions, I plan on implementing a variety of features:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Adding order history to dedicated order page
+- Making all product filters functional
+- Adding a search bar to header
+- Redirect next auth to my custom login/register page
+- Connecting to a database
