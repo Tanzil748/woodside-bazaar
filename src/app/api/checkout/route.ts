@@ -5,8 +5,8 @@ import Stripe from "stripe";
 export const POST = async (request: NextRequest) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
   try {
-    const reqBody = await request.json();
-    const { items, email } = await reqBody;
+    const data = await request.json();
+    const { items } = await data;
 
     const extractingItems = await items.map((item: ProductType) => ({
       quantity: item.quantity,
@@ -21,19 +21,14 @@ export const POST = async (request: NextRequest) => {
     }));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
       line_items: extractingItems,
       mode: "payment",
       success_url: `${process.env.NEXTAUTH_URL}/success`,
       cancel_url: `${process.env.NEXTAUTH_URL}/checkout`,
-      metadata: {
-        email,
-      },
     });
 
     return NextResponse.json({
       message: "Connection worked",
-      success: true,
       id: session.id,
     });
   } catch (error: any) {
@@ -41,4 +36,4 @@ export const POST = async (request: NextRequest) => {
   }
 };
 
-// reqBody => email && array of items => category, img, name, price, quantity, store
+// data => email && array of items => category, img, name, price, quantity, store

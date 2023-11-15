@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import toast, { Toaster } from "react-hot-toast";
 
 const Sidebar = () => {
-  const [storeChecked, setStoreChecked] = useState({});
-  const [priceChecked, setPriceChecked] = useState({});
-
   let stores = [
     "Walmart",
     "Costco",
@@ -16,20 +13,6 @@ const Sidebar = () => {
   ];
 
   let priceRange = ["$0 - $10", "$11 - $20", "$21 - $30", "$31 - No Limit"];
-
-  const handleStoreCheckboxChange = (store) => {
-    setStoreChecked((prev) => ({
-      ...prev,
-      [store]: !prev[store],
-    }));
-  };
-
-  const handlePriceCheckboxChange = (price) => {
-    setPriceChecked((prev) => ({
-      ...prev,
-      [price]: !prev[price],
-    }));
-  };
 
   return (
     <div className="bg-[#207020] text-gray-100 p-3 rounded-md min-h-[80vh] flex flex-col sticky top-4">
@@ -54,8 +37,6 @@ const Sidebar = () => {
           <label className="cursor-pointer flex items-center gap-2 mb-1">
             <input
               type="checkbox"
-              checked={storeChecked[store]}
-              onChange={() => handleStoreCheckboxChange(store)}
               className="checkbox bg-gray-100 h-5 w-5"
               onClick={() => {
                 toast.error(`Store filter coming next application update!`);
@@ -73,8 +54,6 @@ const Sidebar = () => {
           <label className="cursor-pointer flex items-center gap-2 mb-1">
             <input
               type="checkbox"
-              checked={priceChecked[price]}
-              onChange={() => handlePriceCheckboxChange(price)}
               className="checkbox bg-gray-100 h-5 w-5"
               onClick={() => {
                 toast.error(`Price filter coming next application update!`);

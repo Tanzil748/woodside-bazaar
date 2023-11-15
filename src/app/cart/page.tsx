@@ -47,7 +47,7 @@ const Cart = () => {
   const { data: session } = useSession();
   const checkoutHandler = async () => {
     const stripe = await stripePromise;
-    const response = await fetch("http://localhost:3000/api/checkout", {
+    const response = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -59,11 +59,9 @@ const Cart = () => {
     const data = await response.json();
 
     if (response.ok) {
-      await dispatch(saveUserCart({ order: productData, id: data.id }));
+      dispatch(saveUserCart({ order: productData, id: data.id }));
       stripe?.redirectToCheckout({ sessionId: data.id });
       dispatch(resetCart());
-    } else {
-      throw new Error("Failed to create stripe payment");
     }
   };
 

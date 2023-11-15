@@ -17,6 +17,7 @@ const Login = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-500 via-transparent to-emerald-700 opacity-75 flex flex-col justify-center items-end p-2 sm:p-8">
               <div className="text-white text-end text-base sm:text-2xl font-bold mb-2">
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
                 Don't have an account?
               </div>
               <Link href="/register">
